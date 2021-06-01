@@ -1,5 +1,5 @@
 const Users = {
-    async get() {
+    async get(options = {}) {
         // let users = fetch('https://reqres.in/api/users')
         // .then(response => {
         //     return response.json()
@@ -13,7 +13,10 @@ const Users = {
         // const data = await response.json()
         // return data.data
     
-        const data = await (await fetch('https://reqres.in/api/users')).json()
-        return data.data
+        // const data = await (await fetch('https://reqres.in/api/users')).json()
+        // return data.data
+        let page = options.page || 1
+        const response = await axios.get('https://reqres.in/api/users', {params: {page: page}})
+        return response.data
     }
 }
